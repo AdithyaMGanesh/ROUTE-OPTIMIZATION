@@ -1,0 +1,15 @@
+{
+  "order_id": "SAMPLE",
+  "baseline_distance": 62,
+  "optimized_distance": 62,
+  "improvement_percent": 0.0,
+  "route_sequence": [
+    "Depot",
+    "A14_7",
+    "A15_2",
+    "A10_4",
+    "A01_6",
+    "A05_11",
+    "Depot"
+  ]
+}

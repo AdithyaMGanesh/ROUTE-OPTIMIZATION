@@ -207,5 +207,47 @@ def main():
     with open('route_metrics.json', 'w') as f:
         json.dump(metrics, f, indent=2)
 
+def find_shortest_path(shelf_ids, num_aisles=19, num_rows=12):
+    """
+    Public wrapper function for route optimization.
+    Args:
+        shelf_ids: list of shelves to pick (e.g. ["A19_2", "A15_7", ...])
+        num_aisles, num_rows: layout config (default: 19 aisles x 12 rows)
+    Returns:
+        (optimized_route, total_distance)
+    """
+    # Generate or load layout
+    layout_file = 'warehouse_layout.csv'
+    if os.path.exists(layout_file):
+        layout_df = pd.read_csv(layout_file)
+    else:
+        layout_df = generate_layout(num_aisles=num_aisles, num_rows=num_rows)
+        layout_df.to_csv(layout_file, index=False)
+
+    # Build coords map
+    coords_map = {row['shelf_id']: (row['x'], row['y']) for _, row in layout_df.iterrows()}
+    coords_map['Depot'] = (0, 0)
+
+    # Get coordinates for shelves
+    pick_coords = [coords_map[sid] for sid in shelf_ids]
+
+    # Run NN + 2-opt
+    route_nn_coords = nearest_neighbor_route(coords_map['Depot'], pick_coords)
+
+    def coord_to_shelf(coord):
+        for sid, xy in coords_map.items():
+            if np.allclose(xy, coord):
+                return sid
+        return None
+
+    route_nn_shelf = [coord_to_shelf(c) for c in route_nn_coords]
+    route_opt_shelf = two_opt_improve(route_nn_shelf, coords_map)
+
+    # Compute distance
+    opt_dist = route_distance(route_opt_shelf, coords_map)
+
+    return route_opt_shelf, opt_dist
+
+
 if __name__ == '__main__':
     main()

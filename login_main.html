@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextStep Enterprises Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-blue: #133a6d;
+            --aqua-blue: #4fd1c5;
+            --card-shadow-left: #133a6d44;
+            --card-shadow-right: #d4ffb044;
+            --input-bg: #f3f6fa;
+            --input-border: #fff;
+            --btn-bg: #133a6d;
+            --btn-hover-bg: #0d2747;
+            --overlay: rgba(20, 30, 40, 0.7);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('warehouse.jpg') center/cover no-repeat;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: var(--overlay);
+            z-index: 0;
+        }
+        .login-card {
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 8px 32px 0 var(--card-shadow-left), 0 8px 32px 0 var(--card-shadow-right);
+            border-radius: 2rem;
+            overflow: hidden;
+            display: flex;
+        }
+        .card-left-section {
+            background: linear-gradient(180deg, var(--deep-blue) 0%, var(--aqua-blue) 100%);
+            border-top-left-radius: 2rem;
+            border-bottom-left-radius: 2rem;
+            color: #fff;
+            min-width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem 2rem;
+        }
+        .branding {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .branding-logo {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 0.5rem;
+        }
+        .branding-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-align: center;
+        }
+        .card-right-section {
+            background: #fff;
+            border-top-right-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+            min-width: 320px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .login-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .login-radio-group {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .form-check-label {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        .form-control-custom {
+            border-radius: 2rem;
+            padding-left: 2.5rem;
+            height: 2.5rem;
+            background: var(--input-bg);
+            border: 1.5px solid var(--input-border);
+            font-size: 1rem;
+        }
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+            font-size: 1.2rem;
+        }
+        .btn-custom {
+            border-radius: 2rem;
+            background-color: var(--btn-bg);
+            border: none;
+            font-weight: 600;
+            color: #fff;
+            font-size: 1.1rem;
+            padding: 0.75rem 0;
+            transition: background 0.2s;
+        }
+        .btn-custom:hover {
+            background-color: var(--btn-hover-bg);
+        }
+        .footer-url {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        @media (max-width: 900px) {
+            .login-card {
+                flex-direction: column;
+                border-radius: 2rem;
+            }
+            .card-left-section, .card-right-section {
+                border-radius: 0;
+                min-width: unset;
+            }
+        }
+        @media (max-width: 600px) {
+            .login-card {
+                box-shadow: 0 4px 16px 0 var(--card-shadow-left), 0 4px 16px 0 var(--card-shadow-right);
+            }
+            .card-left-section, .card-right-section {
+                padding: 1.5rem 1rem;
+            }
+            .login-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="login-card mx-auto my-5">
+        <div class="card-left-section">
+            <div class="branding">
+                <div class="branding-text">NextStep<br>Enterprises</div>
+            </div>
+            <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 20rem; width: 100%; height: auto;">
+                <defs>
+                    <linearGradient id="warehouseGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#4fd1c5;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#133a6d;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="truckGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#133a6d;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#4fd1c5;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <!-- Warehouse building -->
+                <rect x="40" y="60" width="120" height="60" rx="10" fill="url(#warehouseGradient)" />
+                <rect x="60" y="80" width="20" height="20" rx="3" fill="#fff" />
+                <rect x="120" y="80" width="20" height="20" rx="3" fill="#fff" />
+                <rect x="90" y="90" width="20" height="30" rx="5" fill="#e2e8f0" />
+                <!-- Boxes -->
+                <rect x="50" y="120" width="15" height="10" fill="#ffe066" />
+                <rect x="70" y="120" width="15" height="10" fill="#ffd700" />
+                <rect x="130" y="120" width="15" height="10" fill="#ffe066" />
+                <rect x="150" y="120" width="15" height="10" fill="#ffd700" />
+                <!-- Truck -->
+                <rect x="20" y="110" width="30" height="15" rx="3" fill="url(#truckGradient)" />
+                <rect x="15" y="115" width="10" height="10" fill="#fff" />
+                <circle cx="25" cy="127" r="5" fill="#133a6d" />
+                <circle cx="40" cy="127" r="5" fill="#133a6d" />
+            </svg>
+        </div>
+        <div class="card-right-section">
+            <div class="login-title">Login</div>
+            <div class="login-radio-group mb-4">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="login_type" id="warehouse" value="warehouse" checked>
+                    <label class="form-check-label" for="warehouse">Manager</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="login_type" id="manufacture" value="manufacture">
+                    <label class="form-check-label" for="manufacture">Picker</label>
+                </div>
+            </div>
+            <form>
+                <div class="mb-4 position-relative">
+                    <i class="bi bi-person input-icon"></i>
+                    <input type="text" class="form-control form-control-custom" id="username" placeholder="USER NAME">
+                </div>
+                <div class="mb-4 position-relative">
+                    <i class="bi bi-lock input-icon"></i>
+                    <input type="password" class="form-control form-control-custom" id="password" placeholder="PASSWORD">
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-custom">LOGIN</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Footer URL -->
+    <div class="footer-url">
+        <i class="bi bi-globe me-2"></i>
+        nextstepenterprises.com
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
